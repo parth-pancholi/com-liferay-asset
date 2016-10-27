@@ -15,6 +15,8 @@
 package com.liferay.asset.publisher.web.portlet;
 
 import com.liferay.asset.publisher.web.constants.AssetPublisherPortletKeys;
+import com.liferay.asset.publisher.web.util.AssetPublisherCustomizer;
+import com.liferay.asset.publisher.web.util.AssetPublisherCustomizerRegistry;
 import com.liferay.asset.publisher.web.util.AssetPublisherUtil;
 import com.liferay.asset.publisher.web.util.AssetRSSUtil;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
@@ -24,6 +26,7 @@ import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -266,8 +269,22 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		renderRequest.setAttribute(
-			WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
+		try {
+			String rootPortletId = PortletConstants.getRootPortletId(
+				portal.getPortletId(renderRequest));
+
+			AssetPublisherCustomizer assetPublisherCustomizer =
+				assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
+					rootPortletId);
+
+			renderRequest.setAttribute(
+				"assetPublisherCustomizer", assetPublisherCustomizer);
+
+			renderRequest.setAttribute(
+				WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
+		}
+		catch (Exception e) {
+		}
 
 		if (SessionErrors.contains(
 				renderRequest, NoSuchGroupException.class.getName()) ||
@@ -291,6 +308,9 @@ public class AssetPublisherPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	@Reference
+	protected AssetPublisherCustomizerRegistry assetPublisherCustomizerRegistry;
 
 	@Reference
 	protected Portal portal;

@@ -22,6 +22,8 @@ import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.asset.publisher.web.constants.AssetPublisherPortletKeys;
 import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebConfigurationValues;
+import com.liferay.asset.publisher.web.util.AssetPublisherCustomizer;
+import com.liferay.asset.publisher.web.util.AssetPublisherCustomizerRegistry;
 import com.liferay.asset.publisher.web.util.AssetPublisherUtil;
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.exportimport.kernel.staging.Staging;
@@ -32,6 +34,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutRevision;
 import com.liferay.portal.kernel.model.LayoutSetBranch;
 import com.liferay.portal.kernel.model.LayoutTypePortletConstants;
+import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
@@ -66,6 +69,7 @@ import javax.portlet.PortletRequest;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -93,6 +97,27 @@ public class AssetPublisherConfigurationAction
 		}
 
 		return "/configuration.jsp";
+	}
+
+	public void include(
+			PortletConfig portletConfig, HttpServletRequest request,
+			HttpServletResponse response)
+		throws Exception {
+
+		String portletResource = ParamUtil.getString(
+			request, "portletResource");
+
+		String rootPortletId = PortletConstants.getRootPortletId(
+			portletResource);
+
+		AssetPublisherCustomizer assetPublisherCustomizer =
+			assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
+				rootPortletId);
+
+		request.setAttribute(
+			"assetPublisherCustomizer", assetPublisherCustomizer);
+
+		super.include(portletConfig, request, response);
 	}
 
 	@Override
@@ -707,6 +732,9 @@ public class AssetPublisherConfigurationAction
 				queryRule.getName());
 		}
 	}
+
+	@Reference
+	protected AssetPublisherCustomizerRegistry assetPublisherCustomizerRegistry;
 
 	protected AssetTagLocalService assetTagLocalService;
 	protected GroupLocalService groupLocalService;

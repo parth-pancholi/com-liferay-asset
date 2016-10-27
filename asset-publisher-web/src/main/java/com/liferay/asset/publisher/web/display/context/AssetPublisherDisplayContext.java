@@ -108,7 +108,7 @@ public class AssetPublisherDisplayContext {
 	}
 
 	/**
-	 * @deprecated As of 1.3.0, replaced by {@link
+	 * @deprecated As of 1.2.0, replaced by {@link
 	 *             #AssetPublisherDisplayContext(AssetPublisherCustomizer,
 	 *             PortletRequest, PortletResponse, PortletPreferences)}
 	 */
@@ -123,7 +123,7 @@ public class AssetPublisherDisplayContext {
 	}
 
 	/**
-	 * @deprecated As of 2.0.0, replaced by {@link
+	 * @deprecated As of 1.2.0, replaced by {@link
 	 *             #AssetPublisherDisplayContext(AssetPublisherCustomizer,
 	 *             PortletRequest, PortletResponse, PortletPreferences)}
 	 */
