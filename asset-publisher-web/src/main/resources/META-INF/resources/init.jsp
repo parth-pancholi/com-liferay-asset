@@ -121,6 +121,9 @@ page import="java.util.Set" %>
 page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %>
 
+<%@ page
+	import="com.liferay.asset.publisher.web.util.AssetPublisherCustomizer" %>
+
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />
@@ -128,7 +131,8 @@ page import="javax.portlet.PortletURL" %>
 <portlet:defineObjects />
 
 <%
-AssetPublisherDisplayContext assetPublisherDisplayContext = new AssetPublisherDisplayContext(liferayPortletRequest, liferayPortletResponse, portletPreferences);
+AssetPublisherCustomizer assetPublisherCustomizer = (AssetPublisherCustomizer)request.getAttribute("assetPublisherCustomizer");
+AssetPublisherDisplayContext assetPublisherDisplayContext = new AssetPublisherDisplayContext(assetPublisherCustomizer, liferayPortletRequest, liferayPortletResponse, portletPreferences);
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(locale, timeZone);
 %>
