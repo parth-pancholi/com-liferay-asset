@@ -97,14 +97,12 @@ public class AssetPublisherDisplayContext {
 		PortletRequest portletRequest, PortletResponse portletResponse,
 		PortletPreferences portletPreferences) {
 
-		_request = PortalUtil.getHttpServletRequest(portletRequest);
-
 		_assetPublisherCustomizer = assetPublisherCustomizer;
-
 		_portletRequest = portletRequest;
 		_portletResponse = portletResponse;
-
 		_portletPreferences = portletPreferences;
+
+		_request = PortalUtil.getHttpServletRequest(portletRequest);
 	}
 
 	/**
@@ -118,8 +116,8 @@ public class AssetPublisherDisplayContext {
 
 		throw new UnsupportedOperationException(
 			"This constructor is deprecated and replaced by " +
-			"#AssetPublisherDisplayContext(AssetPublisherCustomizer," +
-			"PortletRequest, PortletResponse, PortletPreferences)");
+				"#AssetPublisherDisplayContext(AssetPublisherCustomizer," +
+					"PortletRequest, PortletResponse, PortletPreferences)");
 	}
 
 	/**
@@ -135,7 +133,7 @@ public class AssetPublisherDisplayContext {
 		throw new UnsupportedOperationException(
 			"This constructor is deprecated and replaced by " +
 				"#AssetPublisherDisplayContext(AssetPublisherCustomizer," +
-				"PortletRequest, PortletResponse, PortletPreferences)");
+					"PortletRequest, PortletResponse, PortletPreferences)");
 	}
 
 	public int getAbstractLength() {
