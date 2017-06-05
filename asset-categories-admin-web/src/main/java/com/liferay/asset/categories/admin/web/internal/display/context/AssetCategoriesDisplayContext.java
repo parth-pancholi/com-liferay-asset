@@ -29,6 +29,7 @@ import com.liferay.asset.kernel.service.AssetCategoryServiceUtil;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.asset.kernel.service.AssetVocabularyServiceUtil;
 import com.liferay.exportimport.kernel.staging.permission.StagingPermissionUtil;
+import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
@@ -333,6 +334,29 @@ public class AssetCategoriesDisplayContext {
 			"display-style", "list");
 
 		return _displayStyle;
+	}
+
+	public String getEditCategoryRedirect() throws PortalException {
+		PortletURL backURL = _renderResponse.createRenderURL();
+
+		AssetCategory category = getCategory();
+
+		long parentCategoryId = BeanParamUtil.getLong(
+			category, _request, "parentCategoryId");
+
+		backURL.setParameter("mvcPath", "/view_categories.jsp");
+
+		if (parentCategoryId > 0) {
+			backURL.setParameter(
+				"categoryId", String.valueOf(parentCategoryId));
+		}
+
+		if (getVocabularyId() > 0) {
+			backURL.setParameter(
+				"vocabularyId", String.valueOf(getVocabularyId()));
+		}
+
+		return backURL.toString();
 	}
 
 	public PortletURL getIteratorURL() {
