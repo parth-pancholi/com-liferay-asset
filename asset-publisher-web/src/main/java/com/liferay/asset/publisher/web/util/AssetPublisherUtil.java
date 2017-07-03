@@ -380,7 +380,8 @@ public class AssetPublisherUtil {
 			long scopeGroupId, int max, boolean checkPermission)
 		throws PortalException {
 
-		long[] groupIds = getGroupIds(portletPreferences, scopeGroupId, layout);
+		long[] groupIds = getGroupIds(
+			portletPreferences, layout.getGroupId(), layout);
 
 		AssetEntryQuery assetEntryQuery = getAssetEntryQuery(
 			portletPreferences, groupIds, null, null);
@@ -411,7 +412,8 @@ public class AssetPublisherUtil {
 
 		assetEntryQuery.setEnablePermissions(enablePermissions);
 
-		assetEntryQuery.setEnd(max);
+		assetEntryQuery.setEnd(
+			AssetPublisherWebConfigurationValues.DYNAMIC_SUBSCRIPTION_LIMIT);
 
 		boolean excludeZeroViewCount = GetterUtil.getBoolean(
 			portletPreferences.getValue("excludeZeroViewCount", null));
@@ -447,12 +449,7 @@ public class AssetPublisherUtil {
 
 		assetEntryQuery.setStart(0);
 
-		if (checkPermission) {
-			return _assetEntryService.getEntries(assetEntryQuery);
-		}
-		else {
-			return _assetEntryLocalService.getEntries(assetEntryQuery);
-		}
+		return _assetEntryLocalService.getEntries(assetEntryQuery);
 	}
 
 	public static List<AssetEntry> getAssetEntries(
