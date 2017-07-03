@@ -55,6 +55,8 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchContextFactory;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -76,6 +78,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -87,6 +90,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SubscriptionSender;
+import com.liferay.portal.kernel.util.TimeZoneThreadLocal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.xml.Document;
@@ -449,7 +453,24 @@ public class AssetPublisherUtil {
 
 		assetEntryQuery.setStart(0);
 
-		return _assetEntryLocalService.getEntries(assetEntryQuery);
+		try {
+			SearchContext searchContext = SearchContextFactory.getInstance(
+				new long[0], new String[0], null, layout.getCompanyId(),
+				StringPool.BLANK, layout,
+				LocaleThreadLocal.getSiteDefaultLocale(), layout.getGroupId(),
+				TimeZoneThreadLocal.getDefaultTimeZone(), 0);
+
+			BaseModelSearchResult<AssetEntry> baseModelSearchResult =
+				AssetUtil.searchAssetEntries(
+					searchContext, assetEntryQuery, 0,
+					AssetPublisherWebConfigurationValues.
+						DYNAMIC_SUBSCRIPTION_LIMIT);
+
+			return baseModelSearchResult.getBaseModels();
+		}
+		catch (Exception e) {
+			return Collections.emptyList();
+		}
 	}
 
 	public static List<AssetEntry> getAssetEntries(
