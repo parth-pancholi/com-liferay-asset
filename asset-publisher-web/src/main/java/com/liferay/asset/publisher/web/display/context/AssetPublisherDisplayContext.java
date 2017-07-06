@@ -899,7 +899,6 @@ public class AssetPublisherDisplayContext {
 			portletURL.setParameter(
 				"eventName", _portletResponse.getNamespace() + "selectTag");
 			portletURL.setParameter("selectedTags", "{selectedTags}");
-
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			return portletURL.toString();
