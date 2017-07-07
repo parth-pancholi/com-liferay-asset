@@ -73,9 +73,9 @@ public class DeleteAssetCategoryPortletConfigurationIcon
 		deleteCategoryURL.setParameter(
 			ActionRequest.ACTION_NAME, "deleteCategory");
 		deleteCategoryURL.setParameter(
-			"categoryId", String.valueOf(categoryId));
-		deleteCategoryURL.setParameter(
 			"redirect", _portal.getCurrentURL(portletRequest));
+		deleteCategoryURL.setParameter(
+			"categoryId", String.valueOf(categoryId));
 
 		return deleteCategoryURL.toString();
 	}

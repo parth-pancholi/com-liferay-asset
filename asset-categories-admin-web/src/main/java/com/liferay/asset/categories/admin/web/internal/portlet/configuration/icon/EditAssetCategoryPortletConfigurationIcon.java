@@ -77,12 +77,11 @@ public class EditAssetCategoryPortletConfigurationIcon
 
 			editCategoryURL.setParameter("mvcPath", "/edit_category.jsp");
 			editCategoryURL.setParameter(
-				"vocabularyId", String.valueOf(vocabularyId));
+				"redirect", _portal.getCurrentURL(portletRequest));
 			editCategoryURL.setParameter(
 				"categoryId", String.valueOf(categoryId));
 			editCategoryURL.setParameter(
-				"redirect", _portal.getCurrentURL(portletRequest));
-
+				"vocabularyId", String.valueOf(vocabularyId));
 			editCategoryURL.setWindowState(WindowState.MAXIMIZED);
 
 			return editCategoryURL.toString();
