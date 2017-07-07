@@ -2001,8 +2001,6 @@ public class AssetPublisherUtil {
 					user.getEmailAddress(), user.getFullName());
 			}
 
-			subscriptionSender.setBulk(true);
-
 			subscriptionSender.flushNotificationsAsync();
 		}
 	}
