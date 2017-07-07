@@ -102,10 +102,10 @@ public class AssetCategoriesDisplayContext {
 			PortletProvider.Action.BROWSE);
 
 		portletURL.setParameter(
+			"vocabularyIds", String.valueOf(getVocabularyId()));
+		portletURL.setParameter(
 			"eventName", _renderResponse.getNamespace() + "selectCategory");
 		portletURL.setParameter("singleSelect", Boolean.TRUE.toString());
-		portletURL.setParameter(
-			"vocabularyIds", String.valueOf(getVocabularyId()));
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return portletURL.toString();

@@ -61,14 +61,15 @@ public class AssetCategoryUtil {
 		}
 
 		portletURL.setParameter("mvcPath", "/view_categories.jsp");
-		portletURL.setParameter(
-			"vocabularyId", String.valueOf(vocabulary.getVocabularyId()));
 
 		String navigation = ParamUtil.getString(request, "navigation");
 
 		if (Validator.isNotNull(navigation)) {
 			portletURL.setParameter("navigation", navigation);
 		}
+
+		portletURL.setParameter(
+			"vocabularyId", String.valueOf(vocabulary.getVocabularyId()));
 
 		PortalUtil.addPortletBreadcrumbEntry(
 			request, vocabulary.getTitle(themeDisplay.getLocale()),
