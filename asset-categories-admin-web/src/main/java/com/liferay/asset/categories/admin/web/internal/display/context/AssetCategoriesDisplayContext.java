@@ -449,6 +449,7 @@ public class AssetCategoriesDisplayContext {
 
 		iteratorURL.setParameter("mvcPath", "/view_categories.jsp");
 		iteratorURL.setParameter("redirect", currentURL.toString());
+		iteratorURL.setParameter("navigation", getNavigation());
 
 		if (!isFlattenedNavigationAllowed()) {
 			iteratorURL.setParameter(
@@ -459,7 +460,6 @@ public class AssetCategoriesDisplayContext {
 			"vocabularyId", String.valueOf(getVocabularyId()));
 		iteratorURL.setParameter("displayStyle", getDisplayStyle());
 		iteratorURL.setParameter("keywords", getKeywords());
-		iteratorURL.setParameter("navigation", getNavigation());
 
 		return iteratorURL;
 	}
