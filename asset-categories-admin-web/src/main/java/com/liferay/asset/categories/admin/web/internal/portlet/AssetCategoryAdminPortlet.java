@@ -184,14 +184,15 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 				descriptionMap, vocabularyId, null, serviceContext);
 		}
 		else {
+
+			// Update category
+
 			List<AssetCategoryProperty> categoryProperties =
 				_assetCategoryPropertyLocalService.getCategoryProperties(
 					categoryId);
 
 			String[] categoryPropertiesArray = getCategoryProperties(
 				categoryProperties);
-
-			// Update category
 
 			_assetCategoryService.updateCategory(
 				categoryId, parentCategoryId, titleMap, descriptionMap,
