@@ -122,7 +122,7 @@ if (categoryId > 0) {
 private void _buildCategoriesNavigation(List<AssetCategory> categories, long categoryId, PortletURL portletURL, ThemeDisplay themeDisplay, StringBundler sb) throws Exception {
 	portletURL.setParameter("categoryId", StringPool.BLANK);
 
-	String originalPortletURL = portletURL.toString();
+	String originalPortletURLString = portletURL.toString();
 
 	for (AssetCategory category : categories) {
 		category = category.toEscapedModel();
@@ -135,7 +135,7 @@ private void _buildCategoriesNavigation(List<AssetCategory> categories, long cat
 
 		if (categoryId == category.getCategoryId()) {
 			sb.append("<a class=\"tag-selected\" href=\"");
-			sb.append(HtmlUtil.escape(originalPortletURL));
+			sb.append(HtmlUtil.escape(originalPortletURLString));
 		}
 		else {
 			portletURL.setParameter("categoryId", String.valueOf(category.getCategoryId()));
