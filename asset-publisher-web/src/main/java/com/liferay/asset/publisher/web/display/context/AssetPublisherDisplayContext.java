@@ -15,6 +15,8 @@
 package com.liferay.asset.publisher.web.display.context;
 
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
+import com.liferay.asset.kernel.action.AssetEntryAction;
+import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
@@ -25,6 +27,8 @@ import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.asset.kernel.service.AssetEntryServiceUtil;
 import com.liferay.asset.kernel.service.persistence.AssetEntryQuery;
 import com.liferay.asset.publisher.web.constants.AssetPublisherPortletKeys;
+import com.liferay.asset.publisher.web.constants.AssetPublisherWebKeys;
+import com.liferay.asset.publisher.web.internal.action.AssetEntryActionRegistry;
 import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebConfigurationValues;
 import com.liferay.asset.publisher.web.util.AssetPublisherCustomizer;
 import com.liferay.asset.publisher.web.util.AssetPublisherUtil;
@@ -63,6 +67,7 @@ import java.io.Serializable;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
@@ -101,6 +106,12 @@ public class AssetPublisherDisplayContext {
 		_portletRequest = portletRequest;
 		_portletResponse = portletResponse;
 		_portletPreferences = portletPreferences;
+
+
+		_assetEntryActionRegistry =
+			(AssetEntryActionRegistry)portletRequest.getAttribute(
+				AssetPublisherWebKeys.
+					ASSET_PUBLISHER_CONFIGURATION_ACTION_REGISTRY);
 
 		_request = PortalUtil.getHttpServletRequest(portletRequest);
 	}
@@ -204,6 +215,10 @@ public class AssetPublisherDisplayContext {
 			_allAssetTagNames, new StringComparator());
 
 		return _allAssetTagNames;
+	}
+
+	public List<AssetEntryAction> getAssetEntryActions(String className) {
+		return _assetEntryActionRegistry.getAssetEntryActions(className);
 	}
 
 	public AssetEntryQuery getAssetEntryQuery() throws Exception {
@@ -1232,6 +1247,7 @@ public class AssetPublisherDisplayContext {
 	private long[] _allAssetCategoryIds;
 	private String[] _allAssetTagNames;
 	private Boolean _anyAssetType;
+	private final AssetEntryActionRegistry _assetEntryActionRegistry;
 	private AssetEntryQuery _assetEntryQuery;
 	private String _assetLinkBehavior;
 	private final AssetPublisherCustomizer _assetPublisherCustomizer;
