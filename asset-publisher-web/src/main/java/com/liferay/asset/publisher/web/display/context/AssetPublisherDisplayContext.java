@@ -16,7 +16,6 @@ package com.liferay.asset.publisher.web.display.context;
 
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.action.AssetEntryAction;
-import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
@@ -107,12 +106,10 @@ public class AssetPublisherDisplayContext {
 		_portletResponse = portletResponse;
 		_portletPreferences = portletPreferences;
 
-
 		_assetEntryActionRegistry =
 			(AssetEntryActionRegistry)portletRequest.getAttribute(
 				AssetPublisherWebKeys.
 					ASSET_PUBLISHER_CONFIGURATION_ACTION_REGISTRY);
-
 		_request = PortalUtil.getHttpServletRequest(portletRequest);
 	}
 
