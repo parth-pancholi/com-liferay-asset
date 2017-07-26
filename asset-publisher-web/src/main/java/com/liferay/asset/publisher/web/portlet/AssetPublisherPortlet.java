@@ -298,8 +298,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 				assetPublisherCustomizer);
 
 			renderRequest.setAttribute(
-				AssetPublisherWebKeys.
-					ASSET_PUBLISHER_CONFIGURATION_ACTION_REGISTRY,
+				AssetPublisherWebKeys.ASSET_PUBLISHER_ENTRY_ACTION_REGISTRY,
 				assetEntryActionRegistry);
 
 			renderRequest.setAttribute(
