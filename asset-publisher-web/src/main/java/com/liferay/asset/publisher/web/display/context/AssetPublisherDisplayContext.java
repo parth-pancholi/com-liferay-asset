@@ -108,7 +108,7 @@ public class AssetPublisherDisplayContext {
 
 		_assetEntryActionRegistry =
 			(AssetEntryActionRegistry)portletRequest.getAttribute(
-				AssetPublisherWebKeys.ASSET_PUBLISHER_ENTRY_ACTION_REGISTRY);
+				AssetPublisherWebKeys.ASSET_ENTRY_ACTION_REGISTRY);
 		_request = PortalUtil.getHttpServletRequest(portletRequest);
 	}
 
