@@ -286,7 +286,11 @@ public class AssetPublisherPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String rootPortletId = PortletConstants.getRootPortletId(
+			renderRequest.setAttribute(
+				AssetPublisherWebKeys.ASSET_ENTRY_ACTION_REGISTRY,
+				assetEntryActionRegistry);
+
+			String rootPortletId = PortletIdCodec.decodePortletName(
 				portal.getPortletId(renderRequest));
 
 			AssetPublisherCustomizer assetPublisherCustomizer =
@@ -296,10 +300,6 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			renderRequest.setAttribute(
 				AssetPublisherWebKeys.ASSET_PUBLISHER_CUSTOMIZER,
 				assetPublisherCustomizer);
-
-			renderRequest.setAttribute(
-				AssetPublisherWebKeys.ASSET_ENTRY_ACTION_REGISTRY,
-				assetEntryActionRegistry);
 
 			renderRequest.setAttribute(
 				WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
