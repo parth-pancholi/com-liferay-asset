@@ -247,8 +247,9 @@ public class AssetCategoriesDisplayContext {
 
 			AssetCategoryDisplay assetCategoryDisplay =
 				AssetCategoryServiceUtil.searchCategoriesDisplay(
-					scopeGroupId, getKeywords(), getVocabularyId(),
-					getCategoryId(), categoriesSearchContainer.getStart(),
+					new long[] {scopeGroupId}, getKeywords(),
+					new long[] {getVocabularyId()}, new long[0],
+					categoriesSearchContainer.getStart(),
 					categoriesSearchContainer.getEnd(), sort);
 
 			categoriesCount = assetCategoryDisplay.getTotal();
