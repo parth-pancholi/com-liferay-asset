@@ -100,7 +100,7 @@ public class StagedAssetLinkStagedModelRepository
 	public void deleteStagedModel(StagedAssetLink stagedAssetLink)
 		throws PortalException {
 
-		_assetLinkLocalService.deleteLink(stagedAssetLink);
+		_assetLinkLocalService.deleteAssetLink(stagedAssetLink);
 	}
 
 	@Override
