@@ -290,7 +290,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 				AssetPublisherWebKeys.ASSET_ENTRY_ACTION_REGISTRY,
 				assetEntryActionRegistry);
 
-			String rootPortletId = PortletIdCodec.decodePortletName(
+			String rootPortletId = PortletConstants.getRootPortletId(
 				portal.getPortletId(renderRequest));
 
 			AssetPublisherCustomizer assetPublisherCustomizer =
