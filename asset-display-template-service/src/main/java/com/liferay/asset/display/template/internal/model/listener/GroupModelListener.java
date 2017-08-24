@@ -35,13 +35,15 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	@Override
 	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
-			List<AssetDisplayTemplate> displayTemplates =
+			List<AssetDisplayTemplate> assetDisplayTemplates =
 				_assetDisplayTemplateLocalService.getAssetDisplayTemplates(
 					group.getGroupId());
 
-			for (AssetDisplayTemplate displayTemplate : displayTemplates) {
+			for (AssetDisplayTemplate assetDisplayTemplate :
+					assetDisplayTemplates) {
+
 				_assetDisplayTemplateLocalService.deleteAssetDisplayTemplate(
-					displayTemplate);
+					assetDisplayTemplate);
 			}
 		}
 		catch (Exception e) {
