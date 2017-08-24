@@ -144,7 +144,7 @@ public class AssetDisplayTemplateLocalServiceImpl
 	}
 
 	@Override
-	public int getAssetDisplayTemplateCount(long groupId) {
+	public int getAssetDisplayTemplatesCount(long groupId) {
 		return assetDisplayTemplatePersistence.countByGroupId(groupId);
 	}
 
