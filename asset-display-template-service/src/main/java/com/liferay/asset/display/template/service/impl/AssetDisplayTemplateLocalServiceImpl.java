@@ -64,20 +64,15 @@ public class AssetDisplayTemplateLocalServiceImpl
 		assetDisplayTemplate.setGroupId(groupId);
 		assetDisplayTemplate.setUserId(userId);
 		assetDisplayTemplate.setUserName(user.getFullName());
-		assetDisplayTemplate.setClassNameId(classNameId);
 		assetDisplayTemplate.setName(name);
-		assetDisplayTemplate.setMain(main);
-
-		// Dynamic data mapping template
+		assetDisplayTemplate.setClassNameId(classNameId);
 
 		long assetDisplayTemplateClassNameId = _portal.getClassNameId(
 			AssetDisplayTemplate.class);
-
-		Map<Locale, String> nameMap = Collections.singletonMap(
-			LocaleUtil.getDefault(), name);
-
 		long resourceClassNameId = _portal.getClassNameId(
 			PortletDisplayTemplate.class);
+		Map<Locale, String> nameMap = Collections.singletonMap(
+			LocaleUtil.getDefault(), name);
 
 		DDMTemplate ddmTemplate = _ddmTemplateManager.addTemplate(
 			userId, groupId, assetDisplayTemplateClassNameId,
@@ -90,6 +85,8 @@ public class AssetDisplayTemplateLocalServiceImpl
 			true, false, null, null, serviceContext);
 
 		assetDisplayTemplate.setDDMTemplateId(ddmTemplate.getTemplateId());
+
+		assetDisplayTemplate.setMain(main);
 
 		assetDisplayTemplatePersistence.update(assetDisplayTemplate);
 
