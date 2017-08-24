@@ -58,12 +58,12 @@ public class AssetDisplayTemplateLocalServiceImpl
 		AssetDisplayTemplate assetDisplayTemplate =
 			assetDisplayTemplatePersistence.create(assetDisplayTemplateId);
 
-		assetDisplayTemplate.setCompanyId(user.getCompanyId());
-		assetDisplayTemplate.setCreateDate(
-			serviceContext.getCreateDate(new Date()));
 		assetDisplayTemplate.setGroupId(groupId);
+		assetDisplayTemplate.setCompanyId(user.getCompanyId());
 		assetDisplayTemplate.setUserId(userId);
 		assetDisplayTemplate.setUserName(user.getFullName());
+		assetDisplayTemplate.setCreateDate(
+			serviceContext.getCreateDate(new Date()));
 		assetDisplayTemplate.setName(name);
 		assetDisplayTemplate.setClassNameId(classNameId);
 
@@ -174,11 +174,11 @@ public class AssetDisplayTemplateLocalServiceImpl
 		AssetDisplayTemplate assetDisplayTemplate = getAssetDisplayTemplate(
 			assetDisplayTemplateId);
 
+		assetDisplayTemplate.setModifiedDate(
+			serviceContext.getModifiedDate(new Date()));
 		assetDisplayTemplate.setClassNameId(classNameId);
 		assetDisplayTemplate.setName(name);
 		assetDisplayTemplate.setMain(main);
-		assetDisplayTemplate.setModifiedDate(
-			serviceContext.getModifiedDate(new Date()));
 
 		assetDisplayTemplatePersistence.update(assetDisplayTemplate);
 
