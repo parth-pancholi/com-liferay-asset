@@ -96,8 +96,8 @@ public class AssetDisplayTemplatePermission
 
 		if (assetDisplayTemplate == null) {
 			_log.error(
-				"Unable to get asset display template with " +
-					"assetDisplayTemplateId " + assetDisplayTemplateId);
+				"Unable to get asset display template " +
+					assetDisplayTemplateId);
 
 			return false;
 		}
