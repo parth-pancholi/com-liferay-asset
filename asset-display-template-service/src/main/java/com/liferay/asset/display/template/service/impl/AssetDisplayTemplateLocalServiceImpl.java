@@ -49,7 +49,7 @@ public class AssetDisplayTemplateLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		// Display Template
+		// Asset display template
 
 		User user = userLocalService.getUser(userId);
 
@@ -68,7 +68,7 @@ public class AssetDisplayTemplateLocalServiceImpl
 		assetDisplayTemplate.setName(name);
 		assetDisplayTemplate.setMain(main);
 
-		// DDM Template
+		// Dynamic data mapping template
 
 		long assetDisplayTemplateClassNameId = _portal.getClassNameId(
 			AssetDisplayTemplate.class);
@@ -106,11 +106,11 @@ public class AssetDisplayTemplateLocalServiceImpl
 			AssetDisplayTemplate assetDisplayTemplate)
 		throws PortalException {
 
-		// Display Template
+		// Asset display template
 
 		assetDisplayTemplatePersistence.remove(assetDisplayTemplate);
 
-		// DDM Template
+		// Dynamic data mapping template
 
 		_ddmTemplateLocalService.deleteDDMTemplate(
 			assetDisplayTemplate.getDDMTemplateId());
@@ -172,7 +172,7 @@ public class AssetDisplayTemplateLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		// Display Template
+		// Asset display template
 
 		AssetDisplayTemplate assetDisplayTemplate = getAssetDisplayTemplate(
 			assetDisplayTemplateId);
@@ -185,7 +185,7 @@ public class AssetDisplayTemplateLocalServiceImpl
 
 		assetDisplayTemplatePersistence.update(assetDisplayTemplate);
 
-		// DDM Template
+		// Dynamic data mapping template
 
 		DDMTemplate ddmTemplate = _ddmTemplateManager.getTemplate(
 			assetDisplayTemplate.getDDMTemplateId());
