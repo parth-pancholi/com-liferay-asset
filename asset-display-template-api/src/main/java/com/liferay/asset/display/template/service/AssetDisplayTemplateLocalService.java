@@ -196,9 +196,6 @@ public interface AssetDisplayTemplateLocalService extends BaseLocalService,
 	public AssetDisplayTemplate getAssetDisplayTemplate(
 		long assetDisplayTemplateId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssetDisplayTemplateCount(long groupId);
-
 	/**
 	* Returns a range of all the asset display templates.
 	*
@@ -229,6 +226,9 @@ public interface AssetDisplayTemplateLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssetDisplayTemplatesCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetDisplayTemplatesCount(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();

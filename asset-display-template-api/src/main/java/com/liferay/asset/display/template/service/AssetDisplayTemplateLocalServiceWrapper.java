@@ -226,11 +226,6 @@ public class AssetDisplayTemplateLocalServiceWrapper
 		return _assetDisplayTemplateLocalService.getAssetDisplayTemplate(assetDisplayTemplateId);
 	}
 
-	@Override
-	public int getAssetDisplayTemplateCount(long groupId) {
-		return _assetDisplayTemplateLocalService.getAssetDisplayTemplateCount(groupId);
-	}
-
 	/**
 	* Returns a range of all the asset display templates.
 	*
@@ -271,6 +266,11 @@ public class AssetDisplayTemplateLocalServiceWrapper
 	@Override
 	public int getAssetDisplayTemplatesCount() {
 		return _assetDisplayTemplateLocalService.getAssetDisplayTemplatesCount();
+	}
+
+	@Override
+	public int getAssetDisplayTemplatesCount(long groupId) {
+		return _assetDisplayTemplateLocalService.getAssetDisplayTemplatesCount(groupId);
 	}
 
 	@Override

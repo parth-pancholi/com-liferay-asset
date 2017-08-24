@@ -215,10 +215,6 @@ public class AssetDisplayTemplateLocalServiceUtil {
 		return getService().getAssetDisplayTemplate(assetDisplayTemplateId);
 	}
 
-	public static int getAssetDisplayTemplateCount(long groupId) {
-		return getService().getAssetDisplayTemplateCount(groupId);
-	}
-
 	/**
 	* Returns a range of all the asset display templates.
 	*
@@ -255,6 +251,10 @@ public class AssetDisplayTemplateLocalServiceUtil {
 	*/
 	public static int getAssetDisplayTemplatesCount() {
 		return getService().getAssetDisplayTemplatesCount();
+	}
+
+	public static int getAssetDisplayTemplatesCount(long groupId) {
+		return getService().getAssetDisplayTemplatesCount(groupId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
