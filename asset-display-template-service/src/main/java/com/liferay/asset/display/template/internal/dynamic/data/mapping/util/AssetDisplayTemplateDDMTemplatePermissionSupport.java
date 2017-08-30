@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.asset.display.template.service.permission;
+package com.liferay.asset.display.template.internal.dynamic.data.mapping.util;
 
+import com.liferay.asset.display.template.service.permission.AssetDisplayPermission;
 import com.liferay.dynamic.data.mapping.util.DDMTemplatePermissionSupport;
 
 import org.osgi.service.component.annotations.Component;
@@ -25,7 +26,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {"model.class.name=com.liferay.asset.display.template.model.AssetDisplayTemplate"}
 )
-public class AssetDisplayTemplateDDMPermissionSupport
+public class AssetDisplayTemplateDDMTemplatePermissionSupport
 	implements DDMTemplatePermissionSupport {
 
 	@Override
