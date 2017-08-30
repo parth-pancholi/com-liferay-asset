@@ -50,17 +50,17 @@ long classNameId = BeanParamUtil.getLong(assetDisplayTemplate, request, "classNa
 			<aui:select label="asset-type" name="classNameId">
 
 				<%
-				for (long curClassNameId : assetDisplayTemplateDisplayContext.getAvailableClassNameIds()) {
-					ClassName className = ClassNameLocalServiceUtil.getClassName(curClassNameId);
+				for (long availableClassNameId : assetDisplayTemplateDisplayContext.getAvailableClassNameIds()) {
+					ClassName className = ClassNameLocalServiceUtil.getClassName(availableClassNameId);
 
 					boolean selected = false;
 
-					if ((assetDisplayTemplate != null) && (curClassNameId == classNameId)) {
+					if ((assetDisplayTemplate != null) && (availableClassNameId == classNameId)) {
 						selected = true;
 					}
 				%>
 
-					<aui:option label="<%= ResourceActionsUtil.getModelResource(locale, className.getValue()) %>" selected="<%= selected %>" value="<%= curClassNameId %>" />
+					<aui:option label="<%= ResourceActionsUtil.getModelResource(locale, className.getValue()) %>" selected="<%= selected %>" value="<%= availableClassNameId %>" />
 
 				<%
 				}
