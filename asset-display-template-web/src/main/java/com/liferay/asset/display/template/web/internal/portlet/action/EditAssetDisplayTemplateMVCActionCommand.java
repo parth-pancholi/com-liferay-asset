@@ -57,9 +57,8 @@ public class EditAssetDisplayTemplateMVCActionCommand
 		long assetDisplayTemplateId = ParamUtil.getLong(
 			actionRequest, "assetDisplayTemplateId");
 
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-
 		String name = ParamUtil.getString(actionRequest, "name");
+		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		String language = ParamUtil.getString(actionRequest, "language");
 		String scriptContent = ParamUtil.getString(
 			actionRequest, "scriptContent");
