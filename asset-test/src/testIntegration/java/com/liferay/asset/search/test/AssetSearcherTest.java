@@ -30,8 +30,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portlet.asset.util.AssetSearcher;
 
-import java.util.stream.Stream;
-
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -92,11 +90,13 @@ public class AssetSearcherTest {
 	}
 
 	protected long[] getClassNameIds(String... classNames) {
-		Stream<String> stream = Stream.of(classNames);
+		long[] classNameIds = new long[classNames.length];
 
-		return stream.mapToLong(
-			PortalUtil::getClassNameId
-		).toArray();
+		for (int i = 0; i < classNames.length; i++) {
+			classNameIds[i] = PortalUtil.getClassNameId(classNames[i]);
+		}
+
+		return classNameIds;
 	}
 
 	protected SearchContext getSearchContext() {
