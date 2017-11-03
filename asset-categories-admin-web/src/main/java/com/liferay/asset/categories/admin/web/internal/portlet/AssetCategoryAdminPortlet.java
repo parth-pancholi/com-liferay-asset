@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -305,7 +306,9 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 
 			classTypePKs[i] = ParamUtil.getLong(
 				actionRequest,
-				"subtype" + classNameIds[i] + "-classNameId" + index,
+				StringBundler.concat(
+					"subtype", String.valueOf(classNameIds[i]), "-classNameId",
+					String.valueOf(index)),
 				AssetCategoryConstants.ALL_CLASS_TYPE_PK);
 
 			if (classTypePKs[i] != -1) {
