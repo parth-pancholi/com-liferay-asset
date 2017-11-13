@@ -1001,9 +1001,6 @@ public class AssetPublisherDisplayContext {
 	}
 
 	public String getVocabularyIds() throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		List<AssetVocabulary> vocabularies =
 			AssetVocabularyServiceUtil.getGroupsVocabularies(getGroupIds());
 
