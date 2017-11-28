@@ -26,6 +26,7 @@ import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebC
 import com.liferay.asset.publisher.web.util.AssetPublisherCustomizer;
 import com.liferay.asset.publisher.web.util.AssetPublisherCustomizerRegistry;
 import com.liferay.asset.publisher.web.util.AssetPublisherUtil;
+import com.liferay.asset.publisher.web.util.DefaultAssetPublisherCustomizer;
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.exportimport.kernel.staging.Staging;
 import com.liferay.petra.content.ContentUtil;
@@ -112,9 +113,16 @@ public class AssetPublisherConfigurationAction
 		String rootPortletId = PortletConstants.getRootPortletId(
 			portletResource);
 
-		AssetPublisherCustomizer assetPublisherCustomizer =
-			assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
-				rootPortletId);
+		AssetPublisherCustomizer assetPublisherCustomizer = null;
+
+		if (assetPublisherCustomizerRegistry == null) {
+			assetPublisherCustomizer = new DefaultAssetPublisherCustomizer();
+		}
+		else {
+			assetPublisherCustomizer =
+				assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
+					rootPortletId);
+		}
 
 		request.setAttribute(
 			AssetPublisherWebKeys.ASSET_PUBLISHER_CUSTOMIZER,
