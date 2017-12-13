@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.tags.admin.web.internal.lar;
+package com.liferay.asset.tags.internal.exportimport.data.handler;
 
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
