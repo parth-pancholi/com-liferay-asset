@@ -288,7 +288,16 @@ public class AssetBrowserDisplayContext {
 		List<ManagementBarFilterItem> managementBarFilterItems =
 			new ArrayList<>();
 
+		String label = LanguageUtil.get(_request, "all");
+
 		PortletURL groupURL = getPortletURL();
+
+		groupURL.setParameter("groupId", "0");
+
+		ManagementBarFilterItem managementBarFilterItem =
+			new ManagementBarFilterItem(false, label, groupURL.toString());
+
+		managementBarFilterItems.add(managementBarFilterItem);
 
 		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
 
@@ -309,7 +318,7 @@ public class AssetBrowserDisplayContext {
 				active = true;
 			}
 
-			String label = StringPool.BLANK;
+			label = StringPool.BLANK;
 
 			if (curGroup != null) {
 				label = HtmlUtil.escape(
@@ -322,8 +331,8 @@ public class AssetBrowserDisplayContext {
 			groupURL.setParameter(
 				"groupId", String.valueOf(curGroup.getGroupId()));
 
-			ManagementBarFilterItem managementBarFilterItem =
-				new ManagementBarFilterItem(active, label, groupURL.toString());
+			managementBarFilterItem = new ManagementBarFilterItem(
+				active, label, groupURL.toString());
 
 			managementBarFilterItems.add(managementBarFilterItem);
 		}
