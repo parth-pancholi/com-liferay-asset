@@ -26,7 +26,7 @@ import java.sql.ResultSet;
  */
 public class UpgradeAssetEntryAssetCategoryRel extends UpgradeProcess {
 
-	protected void addAssetEntryAssetCategoryRel() throws Exception {
+	protected void addAssetEntryAssetCategoryRels() throws Exception {
 		StringBundler sb = new StringBundler(3);
 
 		sb.append("insert into AssetEntryAssetCategoryRel (");
@@ -57,7 +57,7 @@ public class UpgradeAssetEntryAssetCategoryRel extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		addAssetEntryAssetCategoryRel();
+		addAssetEntryAssetCategoryRels();
 	}
 
 }
