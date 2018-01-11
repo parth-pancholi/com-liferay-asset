@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.asset.display.template.internal.security.permission;
+package com.liferay.asset.display.template.internal.security.permission.resource;
 
 import com.liferay.asset.display.template.constants.AssetDisplayConstants;
-import com.liferay.asset.display.template.model.AssetDisplayTemplate;
-import com.liferay.asset.display.template.service.AssetDisplayTemplateLocalService;
-import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
-import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionFactory;
+import com.liferay.asset.display.template.constants.AssetDisplayTemplatePortletKeys;
+import com.liferay.exportimport.kernel.staging.permission.StagingPermission;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
+import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionFactory;
+import com.liferay.portal.kernel.security.permission.resource.StagedPortletPermissionLogic;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 
 import java.util.Dictionary;
@@ -35,24 +35,21 @@ import org.osgi.service.component.annotations.Reference;
  * @author Preston Crary
  */
 @Component(immediate = true)
-public class AssetDisplayTemplatePermissionRegistrar {
+public class AssetDisplayPortletResourcePermissionRegistrar {
 
 	@Activate
 	public void activate(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
-		properties.put(
-			"model.class.name", AssetDisplayTemplate.class.getName());
+		properties.put("resource.name", AssetDisplayConstants.RESOURCE_NAME);
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
-			ModelResourcePermissionFactory.create(
-				AssetDisplayTemplate.class,
-				AssetDisplayTemplate::getAssetDisplayTemplateId,
-				_assetDisplayTemplateLocalService::getAssetDisplayTemplate,
-				_portletResourcePermission,
-				(modelResourcePermission, consumer) -> {
-				}),
+			PortletResourcePermission.class,
+			PortletResourcePermissionFactory.create(
+				AssetDisplayConstants.RESOURCE_NAME,
+				new StagedPortletPermissionLogic(
+					_stagingPermission,
+					AssetDisplayTemplatePortletKeys.ASSET_DISPLAY_TEMPLATE)),
 			properties);
 	}
 
@@ -61,14 +58,9 @@ public class AssetDisplayTemplatePermissionRegistrar {
 		_serviceRegistration.unregister();
 	}
 
+	private ServiceRegistration<PortletResourcePermission> _serviceRegistration;
+
 	@Reference
-	private AssetDisplayTemplateLocalService _assetDisplayTemplateLocalService;
-
-	@Reference(
-		target = "(resource.name=" + AssetDisplayConstants.RESOURCE_NAME + ")"
-	)
-	private PortletResourcePermission _portletResourcePermission;
-
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private StagingPermission _stagingPermission;
 
 }
