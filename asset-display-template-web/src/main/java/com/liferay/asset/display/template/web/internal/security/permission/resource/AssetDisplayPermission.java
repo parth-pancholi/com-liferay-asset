@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.display.template.web.internal.security.permission;
+package com.liferay.asset.display.template.web.internal.security.permission.resource;
 
 import com.liferay.asset.display.template.constants.AssetDisplayConstants;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
