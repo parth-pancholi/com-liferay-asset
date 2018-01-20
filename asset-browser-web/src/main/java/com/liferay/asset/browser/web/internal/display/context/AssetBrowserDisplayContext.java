@@ -309,7 +309,7 @@ public class AssetBrowserDisplayContext {
 
 		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
 
-		long[] selectedGroupIds = PortalUtil.getSharedContentSiteGroupIds(
+		long[] selectedGroupIds = _getSharedContentScopeGroupIds(
 			themeDisplay.getCompanyId(), selectedGroupId,
 			themeDisplay.getUserId());
 
@@ -434,7 +434,7 @@ public class AssetBrowserDisplayContext {
 
 		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
 
-		return PortalUtil.getSharedContentSiteGroupIds(
+		return _getSharedContentScopeGroupIds(
 			themeDisplay.getCompanyId(), selectedGroupId,
 			themeDisplay.getUserId());
 	}
@@ -538,24 +538,24 @@ public class AssetBrowserDisplayContext {
 
 		Set<Group> groups = new LinkedHashSet<>();
 
-		Group siteGroup = doGetCurrentSiteGroup(groupId);
+		Group scopeGroup = GroupLocalServiceUtil.fetchGroup(groupId);
 
-		if (siteGroup != null) {
+		if (scopeGroup != null) {
 
 			// Current site
 
-			groups.add(siteGroup);
+			groups.add(scopeGroup);
 
 			// Descendant sites
 
-			groups.addAll(siteGroup.getDescendants(true));
+			groups.addAll(scopeGroup.getDescendants(true));
 
 			// Layout scopes
 
 			groups.addAll(
 				GroupLocalServiceUtil.getGroups(
-					siteGroup.getCompanyId(), Layout.class.getName(),
-					siteGroup.getGroupId()));
+					scopeGroup.getCompanyId(), Layout.class.getName(),
+					scopeGroup.getGroupId()));
 		}
 
 		// Administered sites
@@ -576,7 +576,8 @@ public class AssetBrowserDisplayContext {
 		if (sitesContentSharingWithChildrenEnabled !=
 				Sites.CONTENT_SHARING_WITH_CHILDREN_DISABLED) {
 
-			groups.addAll(doGetAncestorSiteGroups(groupId, true));
+			groups.addAll(
+				PortalUtil.getCurrentAndAncestorSiteGroups(groupId, true));
 		}
 
 		Iterator<Group> iterator = groups.iterator();
@@ -584,7 +585,7 @@ public class AssetBrowserDisplayContext {
 		while (iterator.hasNext()) {
 			Group group = iterator.next();
 
-			if (!StagingUtil.isGroupAccessible(group, siteGroup)) {
+			if (!StagingUtil.isGroupAccessible(group, scopeGroup)) {
 				iterator.remove();
 			}
 		}
