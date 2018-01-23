@@ -42,8 +42,8 @@ public class AssetDisplayField implements Serializable {
 
 		AssetDisplayField assetDisplayField = (AssetDisplayField)obj;
 
-		if (Objects.equals(getKey(), assetDisplayField.getKey()) &&
-			Objects.equals(getLabel(), assetDisplayField.getLabel())) {
+		if (Objects.equals(_key, assetDisplayField._key) &&
+			Objects.equals(_label, assetDisplayField._label)) {
 
 			return true;
 		}
