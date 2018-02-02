@@ -21,12 +21,10 @@ import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
-import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.frontend.taglib.servlet.taglib.ManagementBarFilterItem;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
@@ -41,22 +39,16 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portlet.asset.util.AssetUtil;
-import com.liferay.sites.kernel.util.Sites;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
@@ -309,7 +301,7 @@ public class AssetBrowserDisplayContext {
 
 		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
 
-		long[] selectedGroupIds = _getSharedContentScopeGroupIds(
+		long[] selectedGroupIds = PortalUtil.getSharedContentSiteGroupIds(
 			themeDisplay.getCompanyId(), selectedGroupId,
 			themeDisplay.getUserId());
 
@@ -434,7 +426,7 @@ public class AssetBrowserDisplayContext {
 
 		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
 
-		return _getSharedContentScopeGroupIds(
+		return PortalUtil.getSharedContentSiteGroupIds(
 			themeDisplay.getCompanyId(), selectedGroupId,
 			themeDisplay.getUserId());
 	}
@@ -530,75 +522,6 @@ public class AssetBrowserDisplayContext {
 		_showScheduled = ParamUtil.getBoolean(_request, "showScheduled");
 
 		return _showScheduled;
-	}
-
-	private long[] _getSharedContentScopeGroupIds(
-			long companyId, long groupId, long userId)
-		throws PortalException {
-
-		Set<Group> groups = new LinkedHashSet<>();
-
-		Group scopeGroup = GroupLocalServiceUtil.fetchGroup(groupId);
-
-		if (scopeGroup != null) {
-
-			// Current site
-
-			groups.add(scopeGroup);
-
-			// Descendant sites
-
-			groups.addAll(scopeGroup.getDescendants(true));
-
-			// Layout scopes
-
-			groups.addAll(
-				GroupLocalServiceUtil.getGroups(
-					scopeGroup.getCompanyId(), Layout.class.getName(),
-					scopeGroup.getGroupId()));
-		}
-
-		// Administered sites
-
-		if (PrefsPropsUtil.getBoolean(
-			companyId,
-			PropsKeys.
-				SITES_CONTENT_SHARING_THROUGH_ADMINISTRATORS_ENABLED)) {
-
-			groups.addAll(GroupLocalServiceUtil.getUserSitesGroups(userId));
-		}
-
-		// Ancestor sites and global site
-
-		int sitesContentSharingWithChildrenEnabled = PrefsPropsUtil.getInteger(
-			companyId, PropsKeys.SITES_CONTENT_SHARING_WITH_CHILDREN_ENABLED);
-
-		if (sitesContentSharingWithChildrenEnabled !=
-				Sites.CONTENT_SHARING_WITH_CHILDREN_DISABLED) {
-
-			groups.addAll(
-				PortalUtil.getCurrentAndAncestorSiteGroups(groupId, true));
-		}
-
-		Iterator<Group> iterator = groups.iterator();
-
-		while (iterator.hasNext()) {
-			Group group = iterator.next();
-
-			if (!StagingUtil.isGroupAccessible(group, scopeGroup)) {
-				iterator.remove();
-			}
-		}
-
-		long[] groupIds = new long[groups.size()];
-
-		int i = 0;
-
-		for (Group group : groups) {
-			groupIds[i++] = group.getGroupId();
-		}
-
-		return groupIds;
 	}
 
 	private AssetRendererFactory _assetRendererFactory;
