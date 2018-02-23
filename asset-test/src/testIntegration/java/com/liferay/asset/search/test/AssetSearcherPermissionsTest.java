@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
  * @author André de Oliveira
  */
 @RunWith(Arquillian.class)
-public class AssetSearcherTest {
+public class AssetSearcherPermissionsTest {
 
 	@ClassRule
 	@Rule
