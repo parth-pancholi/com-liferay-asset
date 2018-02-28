@@ -532,9 +532,6 @@ public class AssetPublisherUtil {
 			if (assetRendererFactory != null) {
 				portletId = assetRendererFactory.getPortletId();
 			}
-			else if (_log.isWarnEnabled()) {
-				_log.warn(assetEntryType + " has no AssetRendererFactory");
-			}
 
 			AssetEntry assetEntry = null;
 
