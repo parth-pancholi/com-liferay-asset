@@ -43,6 +43,11 @@ public class AssetPublisherWebUpgrade implements UpgradeStepRegistrator {
 			new UpgradePortletPreferences(
 				_ddmStructureLocalService, _ddmStructureLinkLocalService,
 				_saxReader));
+
+		registry.register(
+			"com.liferay.asset.publisher.web", "1.0.0", "1.0.1",
+			new com.liferay.asset.publisher.web.upgrade.v1_0_1.
+				UpgradePortletPreferences(_saxReader));
 	}
 
 	@Reference(unbind = "-")
