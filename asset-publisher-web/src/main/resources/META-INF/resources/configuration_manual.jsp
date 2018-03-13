@@ -128,13 +128,7 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 
 							<div class="select-asset-selector">
 								<div class="edit-controls lfr-meta-actions">
-									<liferay-ui:icon-menu
-										cssClass="select-existing-selector"
-										direction="right"
-										message='<%= LanguageUtil.format(request, (groupIds.length == 1) ? "select" : "select-in-x", HtmlUtil.escape(group.getDescriptiveName(locale)), false) %>'
-										showArrow="<%= false %>"
-										showWhenSingleIcon="<%= true %>"
-									>
+									<liferay-ui:icon-menu cssClass="select-existing-selector" direction="right" message='<%= LanguageUtil.format(request, (groupIds.length == 1) ? "select" : "select-in-x", HtmlUtil.escape(group.getDescriptiveName(locale)), false) %>' showArrow="<%= false %>" showWhenSingleIcon="<%= true %>">
 
 										<%
 										List<AssetRendererFactory<?>> assetRendererFactories = ListUtil.sort(AssetRendererFactoryRegistryUtil.getAssetRendererFactories(company.getCompanyId()), new AssetRendererFactoryTypeNameComparator(locale));
