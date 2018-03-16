@@ -16,8 +16,8 @@ package com.liferay.asset.search.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.service.persistence.AssetEntryQuery;
-import com.liferay.blogs.model.BlogsEntry;
-import com.liferay.blogs.service.BlogsEntryLocalService;
+import com.liferay.blogs.kernel.model.BlogsEntry;
+import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksEntryLocalService;
@@ -128,7 +128,7 @@ public class AssetSearcherClassNameIdsTest {
 	}
 
 	protected BlogsEntry addBlogsEntry() throws Exception {
-		return _blogsEntryLocalService.addEntry(
+		return BlogsEntryLocalServiceUtil.addEntry(
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), getServiceContext());
 	}
@@ -194,9 +194,6 @@ public class AssetSearcherClassNameIdsTest {
 
 		return assetSearcher.search(searchContext);
 	}
-
-	@Inject
-	private static BlogsEntryLocalService _blogsEntryLocalService;
 
 	@Inject
 	private static BookmarksEntryLocalService _bookmarksEntryLocalService;
