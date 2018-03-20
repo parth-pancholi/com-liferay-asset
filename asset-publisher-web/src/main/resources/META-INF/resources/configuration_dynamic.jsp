@@ -34,7 +34,10 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 	>
 		<liferay-ui:section>
 			<div class="container-fluid-1280">
-				<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="asset-selection" />
+				<liferay-ui:error-marker
+					key="<%= WebKeys.ERROR_SECTION %>"
+					value="asset-selection"
+				/>
 
 				<aui:fieldset-group markupView="lexicon">
 					<%= selectStyle %>
@@ -270,7 +273,9 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 									String name = dqre.getName();
 									%>
 
-									<liferay-util:buffer var="messageArgument">
+									<liferay-util:buffer
+										var="messageArgument"
+									>
 										<em>(<liferay-ui:message key='<%= dqre.isContains() ? "contains" : "does-not-contain" %>' /> - <liferay-ui:message key='<%= dqre.isAndOperator() ? "all" : "any" %>' /> - <liferay-ui:message key='<%= name.equals(("assetTags")) ? "tags" : "categories" %>' />)</em>
 									</liferay-util:buffer>
 
@@ -517,7 +522,10 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 		<liferay-ui:section>
 			<div class="container-fluid-1280">
-				<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="display-settings" />
+				<liferay-ui:error-marker
+					key="<%= WebKeys.ERROR_SECTION %>"
+					value="display-settings"
+				/>
 
 				<%@ include file="/display_settings.jspf" %>
 			</div>
@@ -526,7 +534,10 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 		<liferay-ui:section>
 			<div class="container-fluid-1280">
 				<aui:fieldset-group markupView="lexicon">
-					<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="subscriptions" />
+					<liferay-ui:error-marker
+						key="<%= WebKeys.ERROR_SECTION %>"
+						value="subscriptions"
+					/>
 
 					<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
 						<aui:fieldset>

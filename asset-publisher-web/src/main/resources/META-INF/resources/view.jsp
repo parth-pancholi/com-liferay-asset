@@ -77,7 +77,9 @@ if (assetPublisherDisplayContext.isEnableTagBasedNavigation() && assetPublisherD
 	<c:if test="<%= enableRSS %>">
 		<liferay-portlet:resourceURL id="getRSS" varImpl="rssURL" />
 
-		<liferay-ui:rss resourceURL="<%= rssURL %>" />
+		<liferay-ui:rss
+			resourceURL="<%= rssURL %>"
+		/>
 	</c:if>
 </div>
 
@@ -113,7 +115,10 @@ request.setAttribute("view.jsp-viewInContext", assetPublisherDisplayContext.isAs
 </c:choose>
 
 <c:if test="<%= !assetPublisherDisplayContext.isPaginationTypeNone() && (searchContainer.getTotal() > searchContainer.getResults().size()) %>">
-	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="<%= assetPublisherDisplayContext.getPaginationType() %>" />
+	<liferay-ui:search-paginator
+		searchContainer="<%= searchContainer %>"
+		type="<%= assetPublisherDisplayContext.getPaginationType() %>"
+	/>
 </c:if>
 
 <aui:script use="querystring-parse">

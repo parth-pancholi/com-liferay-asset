@@ -34,7 +34,10 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 		<liferay-ui:section>
 			<div class="container-fluid-1280">
 				<aui:fieldset-group markupView="lexicon">
-					<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="asset-selection" />
+					<liferay-ui:error-marker
+						key="<%= WebKeys.ERROR_SECTION %>"
+						value="asset-selection"
+					/>
 
 					<aui:fieldset>
 						<%= selectStyle %>
@@ -110,7 +113,10 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 								/>
 							</liferay-ui:search-container-row>
 
-							<liferay-ui:search-iterator markupView="lexicon" paginate="<%= total > SearchContainer.DEFAULT_DELTA %>" />
+							<liferay-ui:search-iterator
+								markupView="lexicon"
+								paginate="<%= total > SearchContainer.DEFAULT_DELTA %>"
+							/>
 						</liferay-ui:search-container>
 
 						<c:if test='<%= SessionMessages.contains(renderRequest, "deletedMissingAssetEntries") %>'>
@@ -128,7 +134,13 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 
 							<div class="select-asset-selector">
 								<div class="edit-controls lfr-meta-actions">
-									<liferay-ui:icon-menu cssClass="select-existing-selector" direction="right" message='<%= LanguageUtil.format(request, (groupIds.length == 1) ? "select" : "select-in-x", HtmlUtil.escape(group.getDescriptiveName(locale)), false) %>' showArrow="<%= false %>" showWhenSingleIcon="<%= true %>">
+									<liferay-ui:icon-menu
+										cssClass="select-existing-selector"
+										direction="right"
+										message='<%= LanguageUtil.format(request, (groupIds.length == 1) ? "select" : "select-in-x", HtmlUtil.escape(group.getDescriptiveName(locale)), false) %>'
+										showArrow="<%= false %>"
+										showWhenSingleIcon="<%= true %>"
+									>
 
 										<%
 										List<AssetRendererFactory<?>> assetRendererFactories = ListUtil.sort(AssetRendererFactoryRegistryUtil.getAssetRendererFactories(company.getCompanyId()), new AssetRendererFactoryTypeNameComparator(locale));
@@ -231,7 +243,10 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 
 		<liferay-ui:section>
 			<div class="container-fluid-1280">
-				<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="display-settings" />
+				<liferay-ui:error-marker
+					key="<%= WebKeys.ERROR_SECTION %>"
+					value="display-settings"
+				/>
 
 				<%@ include file="/display_settings.jspf" %>
 			</div>
@@ -239,7 +254,10 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 
 		<liferay-ui:section>
 			<div class="container-fluid-1280">
-				<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="subscriptions" />
+				<liferay-ui:error-marker
+					key="<%= WebKeys.ERROR_SECTION %>"
+					value="subscriptions"
+				/>
 
 				<aui:fieldset-group markupView="lexicon">
 					<aui:fieldset>

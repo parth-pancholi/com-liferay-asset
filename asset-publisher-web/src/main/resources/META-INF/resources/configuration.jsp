@@ -40,7 +40,9 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 	<aui:input name="assetEntryOrder" type="hidden" value="-1" />
 	<aui:input name="assetEntryType" type="hidden" />
 
-	<liferay-util:buffer var="selectStyle">
+	<liferay-util:buffer
+		var="selectStyle"
+	>
 		<c:choose>
 			<c:when test="<%= !assetPublisherDisplayContext.isSelectionStyleEnabled() %>">
 				<aui:input name="preferences--selectionStyle--" type="hidden" value="dynamic" />
@@ -55,7 +57,9 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 		</c:choose>
 	</liferay-util:buffer>
 
-	<liferay-util:buffer var="selectScope">
+	<liferay-util:buffer
+		var="selectScope"
+	>
 
 		<%
 		Set<Group> availableGroups = new HashSet<Group>();
@@ -112,11 +116,20 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
 
-				<liferay-ui:search-iterator markupView="lexicon" paginate="<%= false %>" />
+				<liferay-ui:search-iterator
+					markupView="lexicon"
+					paginate="<%= false %>"
+				/>
 			</liferay-ui:search-container>
 
 			<div class="select-asset-selector">
-				<liferay-ui:icon-menu cssClass="select-existing-selector" direction="right" message="select" showArrow="<%= false %>" showWhenSingleIcon="<%= true %>">
+				<liferay-ui:icon-menu
+					cssClass="select-existing-selector"
+					direction="right"
+					message="select"
+					showArrow="<%= false %>"
+					showWhenSingleIcon="<%= true %>"
+				>
 
 					<%
 					Map<String, Object> data = new HashMap<String, Object>();
