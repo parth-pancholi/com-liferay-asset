@@ -152,9 +152,8 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"An error occured when updating portlet preferences " +
-						"during export for " +
-							portletDataContext.getPortletId(),
+					"Unable to update portlet preferences while exporting " +
+						portletDataContext.getPortletId(),
 					e);
 			}
 
@@ -180,9 +179,8 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"An error occured when updating portlet preferences " +
-						"during import for " +
-							portletDataContext.getPortletId(),
+					"Unable to update portlet preferences while importing " +
+						portletDataContext.getPortletId(),
 					e);
 			}
 
