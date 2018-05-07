@@ -82,7 +82,9 @@ public class AssetCategoriesNavigationPortletPreferencesProcessor
 		}
 		catch (Exception e) {
 			throw new PortletDataException(
-				"Unable to update portlet preferences during export", e);
+				"Unable to update asset categories navigation portlet " +
+					"preferences during export",
+				e);
 		}
 	}
 
@@ -98,7 +100,9 @@ public class AssetCategoriesNavigationPortletPreferencesProcessor
 		}
 		catch (Exception e) {
 			throw new PortletDataException(
-				"Unable to update portlet preferences during import", e);
+				"Unable to update asset categories navigation portlet " +
+					"preferences during import",
+				e);
 		}
 	}
 
