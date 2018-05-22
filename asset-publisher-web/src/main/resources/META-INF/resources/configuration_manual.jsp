@@ -145,7 +145,11 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 										<%
 										List<AssetRendererFactory<?>> assetRendererFactories = ListUtil.sort(AssetRendererFactoryRegistryUtil.getAssetRendererFactories(company.getCompanyId()), new AssetRendererFactoryTypeNameComparator(locale));
 
+				long originalGroupId = groupId;
+
 										for (AssetRendererFactory<?> curRendererFactory : assetRendererFactories) {
+					groupId = originalGroupId;
+
 											if (!curRendererFactory.isSelectable()) {
 												continue;
 											}
