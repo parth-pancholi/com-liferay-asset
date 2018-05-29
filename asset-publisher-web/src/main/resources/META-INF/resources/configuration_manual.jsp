@@ -146,7 +146,7 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 										List<AssetRendererFactory<?>> assetRendererFactories = ListUtil.sort(AssetRendererFactoryRegistryUtil.getAssetRendererFactories(company.getCompanyId()), new AssetRendererFactoryTypeNameComparator(locale));
 
 										for (AssetRendererFactory<?> curRendererFactory : assetRendererFactories) {
-					long curGroupId = groupId;
+											long curGroupId = groupId;
 
 											if (!curRendererFactory.isSelectable()) {
 												continue;
@@ -161,11 +161,11 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 											String portletId = curRendererFactory.getPortletId();
 
 											if (group.isStagingGroup() && !group.isStagedPortlet(portletId)) {
-						curGroupId = group.getLiveGroupId();
+												curGroupId = group.getLiveGroupId();
 											}
 
-					assetBrowserURL.setParameter("groupId", String.valueOf(curGroupId));
-					assetBrowserURL.setParameter("selectedGroupIds", String.valueOf(curGroupId));
+											assetBrowserURL.setParameter("groupId", String.valueOf(curGroupId));
+											assetBrowserURL.setParameter("selectedGroupIds", String.valueOf(curGroupId));
 											assetBrowserURL.setParameter("typeSelection", curRendererFactory.getClassName());
 											assetBrowserURL.setParameter("showNonindexable", String.valueOf(Boolean.TRUE));
 											assetBrowserURL.setParameter("showScheduled", String.valueOf(Boolean.TRUE));
@@ -175,7 +175,7 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 
 											Map<String, Object> data = new HashMap<String, Object>();
 
-					data.put("groupid", String.valueOf(curGroupId));
+											data.put("groupid", String.valueOf(curGroupId));
 
 											if (!curRendererFactory.isSupportsClassTypes()) {
 												data.put("href", assetBrowserURL.toString());
@@ -190,7 +190,7 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 												<liferay-ui:icon
 													cssClass="asset-selector"
 													data="<%= data %>"
-							id="<%= curGroupId + FriendlyURLNormalizerUtil.normalize(type) %>"
+													id="<%= curGroupId + FriendlyURLNormalizerUtil.normalize(type) %>"
 													message="<%= HtmlUtil.escape(type) %>"
 													url="javascript:;"
 												/>
@@ -200,7 +200,7 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 											else {
 												ClassTypeReader classTypeReader = curRendererFactory.getClassTypeReader();
 
-						List<ClassType> assetAvailableClassTypes = classTypeReader.getAvailableClassTypes(PortalUtil.getCurrentAndAncestorSiteGroupIds(curGroupId), locale);
+												List<ClassType> assetAvailableClassTypes = classTypeReader.getAvailableClassTypes(PortalUtil.getCurrentAndAncestorSiteGroupIds(curGroupId), locale);
 
 												for (ClassType assetAvailableClassType : assetAvailableClassTypes) {
 													assetBrowserURL.setParameter("subtypeSelectionId", String.valueOf(assetAvailableClassType.getClassTypeId()));
@@ -219,7 +219,7 @@ String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortl
 													<liferay-ui:icon
 														cssClass="asset-selector"
 														data="<%= data %>"
-								id="<%= curGroupId + FriendlyURLNormalizerUtil.normalize(type) %>"
+														id="<%= curGroupId + FriendlyURLNormalizerUtil.normalize(type) %>"
 														message="<%= HtmlUtil.escape(type) %>"
 														url="javascript:;"
 													/>
