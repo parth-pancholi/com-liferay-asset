@@ -20,6 +20,7 @@ import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerControl;
+import com.liferay.asset.tags.internal.configuration.AssetTagsServiceConfigurationValues;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.util.PropsValues;
 
 import java.util.List;
 import java.util.Map;
@@ -146,7 +146,8 @@ public class AssetTagStagedModelDataHandler
 		if (portletDataContext.getBooleanParameter(
 				AssetTagsPortletDataHandler.NAMESPACE, "merge-tags-by-name") ||
 			(!hasMergeParameter &&
-			 PropsValues.STAGING_PORTLET_MERGE_TAG_NAMES)) {
+			 AssetTagsServiceConfigurationValues.
+				 STAGING_PORTLET_MERGE_TAG_NAMES)) {
 
 			existingAssetTag = Optional.ofNullable(
 				_assetTagLocalService.fetchTag(
