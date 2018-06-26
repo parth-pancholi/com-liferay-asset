@@ -68,7 +68,7 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 
 		JournalArticle journalArticle =
 			_journalArticleLocalService.getLatestArticleByUrlTitle(
-+				groupId, urlTitle, WorkflowConstants.STATUS_APPROVED);
+				groupId, urlTitle, WorkflowConstants.STATUS_APPROVED);
 
 		Layout layout = getJournalArticleLayout(
 			groupId, privateLayout, friendlyURL);

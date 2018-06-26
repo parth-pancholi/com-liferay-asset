@@ -139,7 +139,7 @@ public class DisplayPageFriendlyURLResolverTest {
 
 	@Test
 	public void testJournalArticleFriendlyURLWithExpiredArticle()
-	throws Exception {
+		throws Exception {
 
 		JournalArticleLocalServiceUtil.expireArticle(
 			_article.getUserId(), _article.getGroupId(),
