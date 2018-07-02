@@ -367,46 +367,7 @@ public class AssetBrowserDisplayContext {
 	}
 
 	public PortletURL getPortletURL() throws PortalException {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		if (getKeywords() != null) {
-			portletURL.setParameter("keywords", getKeywords());
-		}
-
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
-
-		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
-
-		if (selectedGroupId > 0) {
-			portletURL.setParameter(
-				"selectedGroupId", String.valueOf(selectedGroupId));
-		}
-		else {
-			long[] selectedGroupIds = getSelectedGroupIds();
-
-			if (selectedGroupIds.length > 0) {
-				portletURL.setParameter(
-					"selectedGroupIds", StringUtil.merge(selectedGroupIds));
-			}
-		}
-
-		portletURL.setParameter(
-			"refererAssetEntryId", String.valueOf(getRefererAssetEntryId()));
-		portletURL.setParameter("typeSelection", getTypeSelection());
-		portletURL.setParameter(
-			"subtypeSelectionId", String.valueOf(getSubtypeSelectionId()));
-
-		if (getListable() != null) {
-			portletURL.setParameter("listable", String.valueOf(getListable()));
-		}
-
-		portletURL.setParameter(
-			"showNonindexable", String.valueOf(isShowNonindexable()));
-		portletURL.setParameter(
-			"showScheduled", String.valueOf(isShowScheduled()));
-		portletURL.setParameter("eventName", getEventName());
-
-		return portletURL;
+		return _getPortletURL(false);
 	}
 
 	public long getRefererAssetEntryId() {
@@ -418,6 +379,10 @@ public class AssetBrowserDisplayContext {
 			_request, "refererAssetEntryId");
 
 		return _refererAssetEntryId;
+	}
+
+	public PortletURL getSearchURL() throws PortalException {
+		return _getPortletURL(true);
 	}
 
 	public long[] getSelectedGroupIds() throws PortalException {
@@ -529,6 +494,49 @@ public class AssetBrowserDisplayContext {
 		_showScheduled = ParamUtil.getBoolean(_request, "showScheduled");
 
 		return _showScheduled;
+	}
+
+	private PortletURL _getPortletURL(boolean search) throws PortalException {
+		PortletURL portletURL = _renderResponse.createRenderURL();
+
+		if (!search && (getKeywords() != null)) {
+			portletURL.setParameter("keywords", getKeywords());
+		}
+
+		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
+
+		long selectedGroupId = ParamUtil.getLong(_request, "selectedGroupId");
+
+		if (selectedGroupId > 0) {
+			portletURL.setParameter(
+				"selectedGroupId", String.valueOf(selectedGroupId));
+		}
+		else {
+			long[] selectedGroupIds = getSelectedGroupIds();
+
+			if (selectedGroupIds.length > 0) {
+				portletURL.setParameter(
+					"selectedGroupIds", StringUtil.merge(selectedGroupIds));
+			}
+		}
+
+		portletURL.setParameter(
+			"refererAssetEntryId", String.valueOf(getRefererAssetEntryId()));
+		portletURL.setParameter("typeSelection", getTypeSelection());
+		portletURL.setParameter(
+			"subtypeSelectionId", String.valueOf(getSubtypeSelectionId()));
+
+		if (getListable() != null) {
+			portletURL.setParameter("listable", String.valueOf(getListable()));
+		}
+
+		portletURL.setParameter(
+			"showNonindexable", String.valueOf(isShowNonindexable()));
+		portletURL.setParameter(
+			"showScheduled", String.valueOf(isShowScheduled()));
+		portletURL.setParameter("eventName", getEventName());
+
+		return portletURL;
 	}
 
 	private AssetRendererFactory _assetRendererFactory;
