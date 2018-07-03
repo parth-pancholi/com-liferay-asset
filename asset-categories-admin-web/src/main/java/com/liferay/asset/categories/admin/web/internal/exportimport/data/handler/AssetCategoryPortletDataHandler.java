@@ -176,7 +176,7 @@ public class AssetCategoryPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected ActionableDynamicQuery getCategoryActionableDynamicQuery(
@@ -194,7 +194,7 @@ public class AssetCategoryPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected ActionableDynamicQuery getVocabularyActionableDynamicQuery(

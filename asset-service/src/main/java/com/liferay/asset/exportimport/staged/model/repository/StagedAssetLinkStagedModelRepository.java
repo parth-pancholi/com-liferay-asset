@@ -423,7 +423,7 @@ public class StagedAssetLinkStagedModelRepository
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void setAssetEntryLocalService(
@@ -431,7 +431,7 @@ public class StagedAssetLinkStagedModelRepository
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void setAssetLinkLocalService(

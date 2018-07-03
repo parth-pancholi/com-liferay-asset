@@ -1351,7 +1351,7 @@ public class AssetPublisherUtil {
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	public static void notifySubscribers(
@@ -1386,7 +1386,7 @@ public class AssetPublisherUtil {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, with no direct replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	public static void registerAssetQueryProcessor(
@@ -1448,7 +1448,7 @@ public class AssetPublisherUtil {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, with no direct replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	public static void unregisterAssetQueryProcessor(
