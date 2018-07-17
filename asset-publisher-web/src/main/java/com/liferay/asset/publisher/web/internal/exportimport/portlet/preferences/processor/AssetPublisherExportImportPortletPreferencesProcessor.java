@@ -825,7 +825,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				}
 			}
 			else if (name.equals(
-						"anyClassTypeDLFileEntryAssetRendererFactory") ||
+						 "anyClassTypeDLFileEntryAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  DLFileEntry.class.getName())) ||
@@ -878,7 +878,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				}
 			}
 			else if (name.equals(
-						"anyClassTypeJournalArticleAssetRendererFactory") ||
+						 "anyClassTypeJournalArticleAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  JournalArticle.class.getName())) ||
@@ -1023,7 +1023,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				}
 			}
 			else if (oldValue.startsWith(
-						AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX)) {
+						 AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX)) {
 
 				// Legacy preferences
 
@@ -1047,7 +1047,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 						scopeIdLayout.getUuid();
 			}
 			else if (oldValue.startsWith(
-						AssetPublisherUtil.SCOPE_ID_LAYOUT_UUID_PREFIX)) {
+						 AssetPublisherUtil.SCOPE_ID_LAYOUT_UUID_PREFIX)) {
 
 				String scopeLayoutUuid = oldValue.substring(
 					AssetPublisherUtil.SCOPE_ID_LAYOUT_UUID_PREFIX.length());
@@ -1205,7 +1205,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				updateImportClassNameIds(portletPreferences, name);
 			}
 			else if (name.equals(
-						"anyClassTypeDLFileEntryAssetRendererFactory") ||
+						 "anyClassTypeDLFileEntryAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  DLFileEntry.class.getName())) ||
@@ -1217,7 +1217,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 					DLFileEntryType.class, companyGroup.getGroupId());
 			}
 			else if (name.equals(
-						"anyClassTypeJournalArticleAssetRendererFactory") ||
+						 "anyClassTypeJournalArticleAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  JournalArticle.class.getName())) ||
