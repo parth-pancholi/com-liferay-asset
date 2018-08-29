@@ -256,7 +256,7 @@ public class AssetPublisherExportImportTest
 			Assert.assertEquals(
 				null, portletPreferences.getValue("scopeId", null));
 			Assert.assertEquals(
-				AssetPublisherHelper.SCOPE_ID_GROUP_PREFIX +
+				AssetPublisherUtil.SCOPE_ID_GROUP_PREFIX +
 					childGroup.getGroupId(),
 				portletPreferences.getValue("scopeIds", null));
 		}

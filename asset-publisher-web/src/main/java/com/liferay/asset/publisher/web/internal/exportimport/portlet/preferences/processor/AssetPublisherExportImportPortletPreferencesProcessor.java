@@ -1257,7 +1257,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 					continue;
 				}
 
-				newValue = assetPublisherHelper.getScopeId(
+				newValue = AssetPublisherUtil.getScopeId(
 					group, portletDataContext.getScopeGroupId());
 			}
 
@@ -1313,12 +1313,12 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 			Element groupIdMappingsElement, Layout layout, String value)
 		throws PortalException, PortletDataException {
 
-		if (value.startsWith(AssetPublisherHelper.SCOPE_ID_LAYOUT_PREFIX)) {
+		if (value.startsWith(AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX)) {
 
 			// Legacy preferences
 
 			String scopeIdSuffix = value.substring(
-				AssetPublisherHelper.SCOPE_ID_LAYOUT_PREFIX.length());
+				AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX.length());
 
 			long scopeIdLayoutId = GetterUtil.getLong(scopeIdSuffix);
 
@@ -1331,15 +1331,13 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 					scopeIdLayout);
 			}
 
-			return AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX +
+			return AssetPublisherUtil.SCOPE_ID_LAYOUT_UUID_PREFIX +
 				scopeIdLayout.getUuid();
 		}
 
-		if (value.startsWith(
-				AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX)) {
-
+		if (value.startsWith(AssetPublisherUtil.SCOPE_ID_LAYOUT_UUID_PREFIX)) {
 			String scopeLayoutUuid = value.substring(
-				AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX.length());
+				AssetPublisherUtil.SCOPE_ID_LAYOUT_UUID_PREFIX.length());
 
 			Layout scopeUuidLayout =
 				_layoutLocalService.getLayoutByUuidAndGroupId(
@@ -1355,7 +1353,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 			return value;
 		}
 
-		long groupId = assetPublisherHelper.getGroupIdFromScopeId(
+		long groupId = AssetPublisherUtil.getGroupIdFromScopeId(
 			value, portletDataContext.getGroupId(),
 			portletDataContext.isPrivateLayout());
 
