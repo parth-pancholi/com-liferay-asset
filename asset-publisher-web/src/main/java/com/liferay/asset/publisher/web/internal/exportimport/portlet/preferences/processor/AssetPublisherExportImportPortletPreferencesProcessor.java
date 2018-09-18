@@ -841,7 +841,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				}
 			}
 			else if (name.equals(
-						 "anyClassTypeDLFileEntryAssetRendererFactory") ||
+						"anyClassTypeDLFileEntryAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  DLFileEntry.class.getName())) ||
@@ -894,7 +894,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				}
 			}
 			else if (name.equals(
-						 "anyClassTypeJournalArticleAssetRendererFactory") ||
+						"anyClassTypeJournalArticleAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  JournalArticle.class.getName())) ||
@@ -1133,7 +1133,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				updateImportClassNameIds(portletPreferences, name);
 			}
 			else if (name.equals(
-						 "anyClassTypeDLFileEntryAssetRendererFactory") ||
+						"anyClassTypeDLFileEntryAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  DLFileEntry.class.getName())) ||
@@ -1145,7 +1145,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 					DLFileEntryType.class, companyGroup.getGroupId());
 			}
 			else if (name.equals(
-						 "anyClassTypeJournalArticleAssetRendererFactory") ||
+						"anyClassTypeJournalArticleAssetRendererFactory") ||
 					 (name.equals("classTypeIds") &&
 					  anyAssetTypeClassName.equals(
 						  JournalArticle.class.getName())) ||
