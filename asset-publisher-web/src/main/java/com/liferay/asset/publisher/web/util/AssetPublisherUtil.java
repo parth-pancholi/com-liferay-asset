@@ -802,7 +802,7 @@ public class AssetPublisherUtil {
 		Map<String, Serializable> attributes =
 			assetPublisherDisplayContext.getAttributes();
 
-		attributes.put("filterExpired", Boolean.TRUE);
+		attributes.put("filterExpired", true);
 
 		return getAssetEntryResults(
 			searchContainer, assetEntryQuery, layout, portletPreferences,
