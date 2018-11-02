@@ -174,38 +174,45 @@ public class AssetPublisherHelper {
 					portletSetupLinkToLayoutUuid, layout.getGroupId(),
 					layout.isPrivateLayout());
 
-			String newPortletId = linkedLayout.getTypeSettingsProperty(
-				LayoutTypePortletConstants.DEFAULT_ASSET_PUBLISHER_PORTLET_ID,
-				StringPool.BLANK);
+			if (linkedLayout != null) {
+				String newPortletId = linkedLayout.getTypeSettingsProperty(
+					LayoutTypePortletConstants.
+						DEFAULT_ASSET_PUBLISHER_PORTLET_ID,
+					StringPool.BLANK);
 
-			if (Validator.isNotNull(newPortletId)) {
-				String oldPortletName = liferayPortletRequest.getPortletName();
+				if (Validator.isNotNull(newPortletId)) {
+					String oldPortletName =
+						liferayPortletRequest.getPortletName();
 
-				viewUrl = StringUtil.replace(
-					viewUrl, oldPortletName + "_redirect",
-					newPortletId + "_redirect");
+					viewUrl = StringUtil.replace(
+						viewUrl, oldPortletName + "_redirect",
+						newPortletId + "_redirect");
 
-				String newId = newPortletId.split("_INSTANCE_")[1];
-				String oldId = oldPortletName.split("_INSTANCE_")[1];
+					String newId = newPortletId.split("_INSTANCE_")[1];
+					String oldId = oldPortletName.split("_INSTANCE_")[1];
 
-				viewUrl = StringUtil.replace(
-					viewUrl, StringPool.SLASH + oldId + StringPool.SLASH,
-					StringPool.SLASH + newId + StringPool.SLASH);
+					viewUrl = StringUtil.replace(
+						viewUrl, StringPool.SLASH + oldId + StringPool.SLASH,
+						StringPool.SLASH + newId + StringPool.SLASH);
 
-				Portlet oldPortlet = PortletLocalServiceUtil.getPortletById(
-					oldPortletName);
+					Portlet oldPortlet = PortletLocalServiceUtil.getPortletById(
+						oldPortletName);
 
-				String oldPortletMapping = oldPortlet.getFriendlyURLMapping();
+					String oldPortletMapping =
+						oldPortlet.getFriendlyURLMapping();
 
-				Portlet newPortlet = PortletLocalServiceUtil.getPortletById(
-					newPortletId);
+					Portlet newPortlet = PortletLocalServiceUtil.getPortletById(
+						newPortletId);
 
-				String newPortletMapping = newPortlet.getFriendlyURLMapping();
+					String newPortletMapping =
+						newPortlet.getFriendlyURLMapping();
 
-				viewUrl = StringUtil.replace(
-					viewUrl,
-					StringPool.SLASH + oldPortletMapping + StringPool.SLASH,
-					StringPool.SLASH + newPortletMapping + StringPool.SLASH);
+					viewUrl = StringUtil.replace(
+						viewUrl,
+						StringPool.SLASH + oldPortletMapping + StringPool.SLASH,
+						StringPool.SLASH + newPortletMapping +
+							StringPool.SLASH);
+				}
 			}
 		}
 
