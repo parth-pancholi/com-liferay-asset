@@ -96,7 +96,12 @@ public class AssetPublisherHelper {
 		redirectURL.setParameter(
 			"assetEntryId", String.valueOf(assetEntry.getEntryId()));
 
-		viewFullContentURL.setParameter("redirect", redirectURL.toString());
+		String redirectURLToOriginalLayout =
+			_resetURLToOriginalLayoutIfLinkedToAnotherLayout(
+				liferayPortletRequest, redirectURL.toString());
+
+		viewFullContentURL.setParameter(
+			"redirect", redirectURLToOriginalLayout);
 
 		AssetRendererFactory<?> assetRendererFactory =
 			assetRenderer.getAssetRendererFactory();
@@ -177,7 +182,8 @@ public class AssetPublisherHelper {
 				String oldPortletName = liferayPortletRequest.getPortletName();
 
 				viewUrl = StringUtil.replace(
-					viewUrl, oldPortletName, newPortletId);
+					viewUrl, oldPortletName + "_redirect",
+					newPortletId + "_redirect");
 
 				String newId = newPortletId.split("_INSTANCE_")[1];
 				String oldId = oldPortletName.split("_INSTANCE_")[1];
@@ -204,6 +210,39 @@ public class AssetPublisherHelper {
 		}
 
 		return viewUrl;
+	}
+
+	private static String _resetURLToOriginalLayoutIfLinkedToAnotherLayout(
+		LiferayPortletRequest liferayPortletRequest, String url) {
+
+		Layout layout = LayoutLocalServiceUtil.fetchLayout(
+			liferayPortletRequest.getPlid());
+
+		PortletPreferences portletPreferences =
+			liferayPortletRequest.getPreferences();
+
+		String portletSetupLinkToLayoutUuid = portletPreferences.getValue(
+			"portletSetupLinkToLayoutUuid", StringPool.BLANK);
+
+		if ((layout != null) &&
+			Validator.isNotNull(portletSetupLinkToLayoutUuid)) {
+
+			Layout linkedLayout =
+				LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(
+					portletSetupLinkToLayoutUuid, layout.getGroupId(),
+					layout.isPrivateLayout());
+
+			if (linkedLayout != null) {
+				String newFriendlyURL = linkedLayout.getFriendlyURL();
+				String oldFriendlyURL = layout.getFriendlyURL();
+
+				url = StringUtil.replace(
+					url, newFriendlyURL + StringPool.QUESTION,
+					oldFriendlyURL + StringPool.QUESTION);
+			}
+		}
+
+		return url;
 	}
 
 }
